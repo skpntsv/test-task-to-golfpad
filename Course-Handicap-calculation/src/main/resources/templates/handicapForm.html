@@ -75,7 +75,7 @@
 <div class="container">
     <h1>Course Handicap Calculator</h1>
     <form action="/calculate" method="post" th:object="${handicapForm}">
-        <label for="handicapIndex">Handicap Index (0 - 54):</label>
+        <label for="handicapIndex">Handicap Index (max 54):</label>
         <input type="number" step="0.1" id="handicapIndex" th:field="*{handicapIndex}" required>
         <div th:if="${#fields.hasErrors('handicapIndex')}" th:errors="*{handicapIndex}" class="error"></div>
 
@@ -87,7 +87,7 @@
         <input type="number" step="1" id="slopeRating" th:field="*{slopeRating}" required>
         <div th:if="${#fields.hasErrors('slopeRating')}" th:errors="*{slopeRating}" class="error"></div>
 
-        <label for="par">Par (20 - 90):</label>
+        <label for="par">Par:</label>
         <input type="number" step="1" id="par" th:field="*{par}" required>
         <div th:if="${#fields.hasErrors('par')}" th:errors="*{par}" class="error"></div>
 
