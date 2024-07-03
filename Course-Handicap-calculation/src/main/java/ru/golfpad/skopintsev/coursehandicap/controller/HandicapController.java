@@ -32,6 +32,7 @@ public class HandicapController {
             Model model) {
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("handicapForm", handicapForm);
             return "handicapForm";
         }
 
@@ -42,6 +43,7 @@ public class HandicapController {
                         handicapForm.getCourseRating(),
                         handicapForm.getPar()));
 
-        return "result";
+        model.addAttribute("handicapForm", handicapForm);
+        return "handicapForm";
     }
 }
