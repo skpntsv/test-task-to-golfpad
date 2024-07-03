@@ -1,0 +1,5 @@
+services:
+  course-handicap-calculator:
+    build: .
+    ports:
+      - "80:8080"

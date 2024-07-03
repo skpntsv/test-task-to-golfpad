@@ -13,7 +13,7 @@ public class CourseHandicapCalculateService {
     public double calculateHandicap(HandicapForm handicapForm) {
         double adjustedHandicapIndex = handicapForm.getHandicapIndex();
 
-        if (!handicapForm.getHoleType().equals("18")) {
+        if (handicapForm.getHoleType() != 18) {
             adjustedHandicapIndex = BigDecimal.valueOf(handicapForm.getHandicapIndex() / 2)
                     .setScale(1, RoundingMode.HALF_UP)
                     .doubleValue();
