@@ -10,22 +10,23 @@ import lombok.Data;
 @Data
 public class HandicapForm {
 
-    @NotNull
-    @Min(-100)
-    @Max(54)
+    @NotNull(message = "{handicapForm.handicapIndex.range}")
+    @Min(value = -100, message = "{handicapForm.handicapIndex.range}")
+    @Max(value = 54, message = "{handicapForm.handicapIndex.range}")
     private Double handicapIndex;
 
-    @NotNull
+    @Min(value = 0, message = "{handicapForm.courseRating.range}")
+    @NotNull(message = "{handicapForm.courseRating.notNull}")
     private Double courseRating;
 
-    @NotNull
-    @Min(55)
-    @Max(155)
+    @NotNull(message = "{handicapForm.slopeRating.range}")
+    @Min(value = 55, message = "{handicapForm.slopeRating.range}")
+    @Max(value = 155, message = "{handicapForm.slopeRating.range}")
     private Integer slopeRating;
 
-    @NotNull
-    @Min(20)
-    @Max(90)
+    @NotNull(message = "{handicapForm.par.range}")
+    @Min(value = 20, message = "{handicapForm.par.range}")
+    @Max(value = 90, message = "{handicapForm.par.range}")
     private Integer par;
 
     @NotNull
