@@ -15,7 +15,7 @@ public class HandicapForm {
     @Max(value = 54, message = "{handicapForm.handicapIndex.range}")
     private Double handicapIndex;
 
-    @Min(value = 0, message = "{handicapForm.courseRating.range}")
+    @Min(value = 20, message = "{handicapForm.courseRating.range}")
     @Max(value = 100, message = "{handicapForm.courseRating.range}")
     @NotNull(message = "{handicapForm.courseRating.notNull}")
     private Double courseRating;
