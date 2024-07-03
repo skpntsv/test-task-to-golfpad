@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Course Handicap Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        select {
+            display: inline-block;
+            width: 160px;
+            height: 34px;
+            line-height: 30px;
+            position: relative;
+            padding: 0 0 0 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Course Handicap Calculator</h1>
+    <form action="/calculate" method="post" th:object="${handicapForm}">
+        <label for="handicapIndex">Handicap Index (0 - 54):</label>
+        <input type="number" step="0.1" id="handicapIndex" th:field="*{handicapIndex}" required>
+        <div th:if="${#fields.hasErrors('handicapIndex')}" th:errors="*{handicapIndex}" class="error"></div>
+
+        <label for="courseRating">Course Rating:</label>
+        <input type="number" step="0.1" id="courseRating" th:field="*{courseRating}" required>
+        <div th:if="${#fields.hasErrors('courseRating')}" th:errors="*{courseRating}" class="error"></div>
+
+        <label for="slopeRating">Slope Rating (55 - 155):</label>
+        <input type="number" step="1" id="slopeRating" th:field="*{slopeRating}" required>
+        <div th:if="${#fields.hasErrors('slopeRating')}" th:errors="*{slopeRating}" class="error"></div>
+
+        <label for="par">Par (20 - 90):</label>
+        <input type="number" step="1" id="par" th:field="*{par}" required>
+        <div th:if="${#fields.hasErrors('par')}" th:errors="*{par}" class="error"></div>
+
+        <label for="holeType">Hole Type:</label>
+        <select id="holeType" th:field="*{holeType}">
+            <option value="18">18-hole Score</option>
+            <option value="9">9-hole Score</option>
+        </select>
+        <div th:if="${#fields.hasErrors('holeType')}" th:errors="*{holeType}" class="error"></div>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div th:if="${courseHandicap != null}" class="result">
+        <h2>Course Handicap Result</h2>
+        <p>Your Course Handicap is: <span th:text="${courseHandicap}"></span></p>
+    </div>
+</div>
+</body>
+</html>
