@@ -4,15 +4,22 @@
 
 Это Spring Boot приложение рассчитывает Course Handicap на основе предоставленных пользователем данных.
 
-### Формула для расчета Course Handicap
+## Стек-технологий
 
-#### For an 18-hole Round:
+- Java 17
+- Spring Boot 3
+- Thymeleaf
+- Docker
+
+## Формула для расчета Course Handicap
+
+### For an 18-hole Round:
 ![18-hole-score](./assets/18-hole.png)
 
-#### For an 9-hole Round:
+### For an 9-hole Round:
 ![9-hole-score](./assets/9-hole.png)
 
-### Граничные значения переменных
+## Граничные значения переменных
 
 - `Handicap Index`: от -100 до 54
 - `Slope Rating`: от 55 до 155
@@ -24,9 +31,8 @@
 ### Требования
 
 - Docker
-- Docker Compose (опционально)
 
-### Запуск с Docker
+* ### Запуск с Docker
 
 ```bash
 docker build -t course-handicap-calculator .
@@ -34,7 +40,7 @@ docker build -t course-handicap-calculator .
 docker run -d -p 80:8080 course-handicap-calculator
 ```
 
-### Запуск с Docker Compose
+* ### Запуск с Docker Compose
 
 ```bash
 docker-compose up --build -d
