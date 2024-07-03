@@ -8,15 +8,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.golfpad.skopintsev.coursehandicap.model.HandicapForm;
-import ru.golfpad.skopintsev.coursehandicap.service.CourseHandicapCalculate;
+import ru.golfpad.skopintsev.coursehandicap.service.CourseHandicapCalculateService;
 
 @Controller
 public class HandicapController {
-    private final CourseHandicapCalculate courseHandicapCalculate;
+    private final CourseHandicapCalculateService courseHandicapCalculateService;
 
     @Autowired
-    public HandicapController(CourseHandicapCalculate courseHandicapCalculate) {
-        this.courseHandicapCalculate = courseHandicapCalculate;
+    public HandicapController(CourseHandicapCalculateService courseHandicapCalculateService) {
+        this.courseHandicapCalculateService = courseHandicapCalculateService;
     }
 
     @GetMapping("/")
@@ -37,7 +37,7 @@ public class HandicapController {
         }
 
         model.addAttribute("courseHandicap",
-                courseHandicapCalculate.calculateHandicap(handicapForm));
+                courseHandicapCalculateService.calculateHandicap(handicapForm));
 
         model.addAttribute("handicapForm", handicapForm);
         return "handicapForm";

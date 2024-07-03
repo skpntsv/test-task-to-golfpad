@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Service
-public class CourseHandicapCalculate {
+public class CourseHandicapCalculateService {
+    private static final int COEFFICIENT = 113;
 
     public double calculateHandicap(HandicapForm handicapForm) {
         double adjustedHandicapIndex = handicapForm.getHandicapIndex();
@@ -27,7 +28,7 @@ public class CourseHandicapCalculate {
     }
 
     private double calculateHandicap(double handicapIndex, double slopeRating, double courseRating, double par) {
-        double courseHandicap = (handicapIndex * slopeRating / 113) + (courseRating - par);
+        double courseHandicap = (handicapIndex * slopeRating / COEFFICIENT) + (courseRating - par);
         return new BigDecimal(courseHandicap)
                 .setScale(0, RoundingMode.HALF_UP)
                 .doubleValue();
