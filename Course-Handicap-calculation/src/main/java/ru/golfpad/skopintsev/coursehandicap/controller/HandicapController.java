@@ -37,11 +37,7 @@ public class HandicapController {
         }
 
         model.addAttribute("courseHandicap",
-                courseHandicapCalculate.calculateHandicap(
-                        handicapForm.getHandicapIndex(),
-                        handicapForm.getSlopeRating(),
-                        handicapForm.getCourseRating(),
-                        handicapForm.getPar()));
+                courseHandicapCalculate.calculateHandicap(handicapForm));
 
         model.addAttribute("handicapForm", handicapForm);
         return "handicapForm";

@@ -11,19 +11,23 @@ import lombok.Data;
 public class HandicapForm {
 
     @NotNull
+    @Min(-100)
     @Max(54)
     private Double handicapIndex;
-
-    @NotNull
-    @Min(55)
-    @Max(155)
-    private Double slopeRating;
 
     @NotNull
     private Double courseRating;
 
     @NotNull
+    @Min(55)
+    @Max(155)
+    private Integer slopeRating;
+
+    @NotNull
     @Min(20)
     @Max(90)
-    private Double par;
+    private Integer par;
+
+    @NotNull
+    private String holeType;
 }
