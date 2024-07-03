@@ -1,11 +1,13 @@
 package ru.golfpad.skopintsev.coursehandicap.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import ru.golfpad.skopintsev.coursehandicap.model.HandicapForm;
 import ru.golfpad.skopintsev.coursehandicap.service.CourseHandicapCalculate;
 
 @Controller
@@ -18,22 +20,27 @@ public class HandicapController {
     }
 
     @GetMapping("/")
-    public String showForm() {
-
-
+    public String showForm(Model model) {
+        model.addAttribute("handicapForm", new HandicapForm());
         return "handicapForm";
     }
 
     @PostMapping("/calculate")
     public String calculateHandicap(
-            @RequestParam("handicapIndex") double handicapIndex,
-            @RequestParam("slopeRating") double slopeRating,
-            @RequestParam("courseRating") double courseRating,
-            @RequestParam("par") double par,
+            @Valid HandicapForm handicapForm,
+            BindingResult bindingResult,
             Model model) {
 
+        if (bindingResult.hasErrors()) {
+            return "handicapForm";
+        }
+
         model.addAttribute("courseHandicap",
-                courseHandicapCalculate.calculateHandicap(handicapIndex, slopeRating, courseRating, par));
+                courseHandicapCalculate.calculateHandicap(
+                        handicapForm.getHandicapIndex(),
+                        handicapForm.getSlopeRating(),
+                        handicapForm.getCourseRating(),
+                        handicapForm.getPar()));
 
         return "result";
     }
